@@ -17,7 +17,7 @@ resources/pages/
 
 .vscode/
 copyToDemoData.sh
-.github
+#.github
 *.log
 .temp/
 .temp/ipnlog.log
