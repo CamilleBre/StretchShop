@@ -1,4 +1,5 @@
-   name: "Build and push to ECR"
+name: "Build and push to ECR"
+
 on:
   push:
     branches:
