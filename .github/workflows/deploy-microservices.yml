@@ -28,7 +28,7 @@ jobs:
 
       - name: Pull and push images to Amazon ECR
         run: |
-          docker-compose --file docker/micro/docker-compose.yml pull
+          docker-compose --file docker/micro/docker-compose.yml up
           docker-compose --file docker/micro/docker-compose.yml config --services | while read -r service; do
             docker tag $service 885801475464.dkr.ecr.eu-west-3.amazonaws.com/ecr_dev:$service-latest
             docker push 885801475464.dkr.ecr.eu-west-3.amazonaws.com/ecr_dev:$service-latest
