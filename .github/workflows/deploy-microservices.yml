@@ -26,9 +26,9 @@ jobs:
         uses: aws-actions/amazon-ecr-login@v1
 
       - name: Setup Docker Compose
-        uses: docker/compose-cli@v0.9.0
+        uses: docker/compose-cli@v1
         with:
-          version: '1.29.2'
+          version: '1.0.17'
 
 
       - name: Build and push images to Amazon ECR
