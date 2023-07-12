@@ -33,3 +33,6 @@ jobs:
             docker tag $service 885801475464.dkr.ecr.eu-west-3.amazonaws.com/ecr_dev:$service-latest
             docker push 885801475464.dkr.ecr.eu-west-3.amazonaws.com/ecr_dev:$service-latest
           done
+
+
+## test
