@@ -25,16 +25,11 @@ jobs:
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v1
 
-      #- name: Setup Docker Compose
-      #  uses: docker/compose-cli@v1
-      #  with:
-      #    version: '1.0.17'
 
-
-      - name: Build and push images to Amazon ECR
+      - name: Pull and push images to Amazon ECR
         run: |
-          docker-compose --file docker/micro/docker-compose.yml build
-          docker-compose config --services | while read -r service; do
-            docker build -t 885801475464.dkr.ecr.$awr-region.amazonaws.com/ecr_dev:$service-latest --build-arg SERVICE=$service .
+          docker-compose --file docker/micro/docker-compose.yml pull
+          docker-compose --file docker/micro/docker-compose.yml config --services | while read -r service; do
+            docker tag $service:latest 885801475464.dkr.ecr.$awr-region.amazonaws.com/ecr_dev:$service-latest
             docker push 885801475464.dkr.ecr.$awr-region.amazonaws.com/ecr_dev:$service-latest
           done
