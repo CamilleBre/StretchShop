@@ -25,13 +25,16 @@ jobs:
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v1
 
-      - name: Build, tag, and push image to Amazon ECR 
-        id: build-image
-        env:
-          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-          ECR_REPOSITORY: "ecr_dev"
-          IMAGE_TAG: latest
+      - name: Setup Docker Compose
+        uses: docker/compose-cli@v0.9.0
+        with:
+          version: '1.29.2'
+
+
+      - name: Build and push images to Amazon ECR
         run: |
-          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
-          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
-          echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
+          docker-compose --file docker/micro/docker-compose.yml build
+          docker-compose config --services | while read -r service; do
+            docker build -t 885801475464.dkr.ecr.$awr-region.amazonaws.com/ecr_dev:$service-latest --build-arg SERVICE=$service .
+            docker push 885801475464.dkr.ecr.$awr-region.amazonaws.com/ecr_dev:$service-latest
+          done
