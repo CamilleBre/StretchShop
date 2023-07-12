@@ -46,7 +46,7 @@ jobs:
 
           for service in "${services[@]}"; do
             image_name=885801475464.dkr.ecr.eu-west-3.amazonaws.com/ecr_dev:$service:latest
-            docker-compose --file docker/micro/docker-compose.yml build --build-arg SERVICES=$service
+            docker-compose --file docker/micro/docker-compose.yml pull SERVICES=$service
             docker tag wradgio/stretchshop:latest $image_name
             docker push $image_name
           done
