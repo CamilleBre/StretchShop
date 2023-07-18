@@ -121,8 +121,8 @@ services:
     #deploy:
     #  replicas: 2
 
-  # redis:
-  #   image: redis:alpine
+    # redis:
+    #   image: redis:alpine
 
   pages:
     build:
@@ -140,8 +140,8 @@ services:
     #deploy:
     #  replicas: 2
 
-  # redis:
-  #   image: redis:alpine
+    # redis:
+    #   image: redis:alpine
 
   mongo:
     image: mongo
@@ -158,7 +158,7 @@ services:
 
   nats-server:
     image: nats
-    entrypoint: "/gnatsd -D --user defaultUsername --pass defaultPassword" # -D debug , -V trace
+    command: "/gnatsd -D --user defaultUsername --pass defaultPassword" # -D debug , -V trace
     ports:
       - "4222:4222"
 
