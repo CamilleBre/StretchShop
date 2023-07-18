@@ -148,6 +148,9 @@ services:
     # image: mvertes/alpine-mongo
     # image: bitnami/mongodb
     restart: on-failure
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: rootpassword
     volumes:
       - ./db:/data/db
       # - ./dbentry:/docker-entrypoint-initdb.d
@@ -158,7 +161,7 @@ services:
 
   nats-server:
     image: nats
-    command: "/gnatsd -D --user defaultUsername --pass defaultPassword" # -D debug , -V trace
+    entrypoint: "/nats-server -D --user defaultUsername --pass defaultPassword" # -D debug , -V trace
     ports:
       - "4222:4222"
 
