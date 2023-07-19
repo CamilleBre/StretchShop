@@ -23,7 +23,7 @@ jobs:
           aws-region: eu-west-3
 
       - name: Login to AWS ECR
-        uses: aws-actions/amazon-ecr-login@v2
+        uses: aws-actions/amazon-ecr-login@v1
         with:
           registry: 885801475464.dkr.ecr.eu-west-3.amazonaws.com/ecr_dev
 
