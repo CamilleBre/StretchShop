@@ -2,6 +2,6 @@
 FROM mongo
 
 # Copier les fichiers de configuration
-COPY ./dbconf /etc/mongo
+#COPY ./dbconf /etc/mongo
 
 # Vous pouvez ajouter d'autres commandes spécifiques au service mongo si nécessaire
