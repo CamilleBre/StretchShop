@@ -43,7 +43,7 @@ jobs:
           #   docker push $image_name
           # done
 
-          # services=("api" "users" "products" "categories" "cart" "orders" "subscriptions" "pages")
+          
 
           # for service in "${services[@]}"; do
           #   image_name=885801475464.dkr.ecr.eu-west-3.amazonaws.com/ecr_dev:$service:latest
@@ -60,8 +60,9 @@ jobs:
           docker images
           ecr_registry_url="885801475464.dkr.ecr.eu-west-3.amazonaws.com"
 
-          services=$(docker-compose -f docker/micro/docker-compose.yml config --services)
-
+          #services=$(docker-compose -f docker/micro/docker-compose.yml config --services)
+          services=("wradgio/stretchshop" "mongo" "nats" "traefik")
+          
           for service in $services; do
             image_name="$ecr_registry_url/ecr_dev:$service"
             docker tag $service $image_name
