@@ -57,12 +57,13 @@ jobs:
       - name: Build and Tag Images
         run: |
           docker-compose -f docker/micro/docker-compose.yml pull
+          docker images
           ecr_registry_url="885801475464.dkr.ecr.eu-west-3.amazonaws.com"
 
           services=$(docker-compose -f docker/micro/docker-compose.yml config --services)
 
           for service in $services; do
-            image_name="$ecr_registry_url/ecr_dev_$service:latest"
+            image_name="$ecr_registry_url/ecr_dev:$service"
             docker tag $service $image_name
           done
 
@@ -74,6 +75,6 @@ jobs:
           services=$(docker-compose -f docker/micro/docker-compose.yml config --services)
 
           for service in $services; do
-            image_name="$ecr_registry_url/ecr_dev_$service:latest"
+            image_name="$ecr_registry_url/ecr_dev:$service"
             docker push $image_name
           done
