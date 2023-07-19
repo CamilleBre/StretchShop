@@ -60,9 +60,9 @@ jobs:
           docker images
           ecr_registry_url="885801475464.dkr.ecr.eu-west-3.amazonaws.com"
 
-          services=$(docker-compose -f docker/micro/docker-compose.yml config --services)
+          #services=$(docker-compose -f docker/micro/docker-compose.yml config --services)
 
-          #services=("wradgio/stretchshop" "mongo" "nats" "traefik")
+          services=( "mongo" "nats" "traefik")
 
           for service in $services; do
             echo $service 
@@ -71,7 +71,9 @@ jobs:
             docker tag $service $image_name
           done
 
-#          docker images
+          docker tag wradgio/stretchshop "$ecr_registry_url/ecr_dev:stretchshop"
+
+          docker images
 
 #      - name: Push Images to ECR
 #        run: |
