@@ -27,8 +27,8 @@ services:
     #  replicas: 2
 
   users:
-    build:
-      context: ../..
+    #build:
+    #  context: ../..
     image: wradgio/stretchshop:latest
     container_name: users
     env_file: docker-compose.env
@@ -44,8 +44,8 @@ services:
     #  replicas: 2
 
   products:
-    build:
-      context: ../..
+    #build:
+    #  context: ../..
     image: wradgio/stretchshop:latest
     container_name: products
     env_file: docker-compose.env
@@ -61,8 +61,8 @@ services:
     #  replicas: 2
 
   categories:
-    build:
-      context: ../..
+    #build:
+    #  context: ../..
     image: wradgio/stretchshop:latest
     container_name: categories
     env_file: docker-compose.env
@@ -78,8 +78,8 @@ services:
     #  replicas: 2
 
   cart:
-    build:
-      context: ../..
+    #build:
+    #  context: ../..
     image: wradgio/stretchshop:latest
     container_name: cart
     env_file: docker-compose.env
@@ -95,8 +95,8 @@ services:
     #  replicas: 2
 
   orders:
-    build:
-      context: ../..
+    #build:
+    #  context: ../..
     image: wradgio/stretchshop:latest
     container_name: orders
     env_file: docker-compose.env
@@ -112,8 +112,8 @@ services:
     #  replicas: 2
 
   subscriptions:
-    build:
-      context: ../..
+    #build:
+    #  context: ../..
     image: wradgio/stretchshop:latest
     container_name: subscriptions
     env_file: docker-compose.env
@@ -132,8 +132,8 @@ services:
     #   image: redis:alpine
 
   pages:
-    build:
-      context: ../..
+    #build:
+    #  context: ../..
     image: wradgio/stretchshop:latest
     container_name: pages
     env_file: docker-compose.env
