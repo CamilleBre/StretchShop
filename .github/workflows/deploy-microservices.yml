@@ -67,7 +67,7 @@ jobs:
           for service in $services; do
             echo $service 
             image_name="$ecr_registry_url/ecr_dev:$service"
-            echo $ image_name 
+            echo $image_name 
             docker tag $service $image_name
           done
 
