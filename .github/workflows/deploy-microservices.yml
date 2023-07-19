@@ -105,7 +105,8 @@ jobs:
           docker push $ecr_registry_url:users
 
       - name: Update kube config
-        run: aws eks update-kubeconfig --name eks-stretchshop
+        run: |
+          aws eks update-kubeconfig --name eks_dev
 
       - name: Deploy to EKS
         run: |
