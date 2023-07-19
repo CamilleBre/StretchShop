@@ -10,6 +10,7 @@ jobs:
     name: "Build and Push to ECR"
     runs-on: ubuntu-latest
 
+    
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2
@@ -53,32 +54,32 @@ jobs:
           docker build -t $ecr_registry_url:nats-server -f ./docker/micro/nats-server/Dockerfile .
           docker push $ecr_registry_url:nats-server
 
-       - name: Build and push Service orders image
+      - name: Build and push Service orders image
         run: |
           docker build -t $ecr_registry_url:orders -f ./docker/micro/orders/Dockerfile .
           docker push $ecr_registry_url:orders        
 
-       - name: Build and push Service pages image
+      - name: Build and push Service pages image
         run: |
           docker build -t $ecr_registry_url:pages -f ./docker/micro/pages/Dockerfile .
           docker push $ecr_registry_url:pages        
 
-       - name: Build and push Service products image
+      - name: Build and push Service products image
         run: |
           docker build -t $ecr_registry_url:products -f ./docker/micro/products/Dockerfile .
           docker push $ecr_registry_url:products  
 
-       - name: Build and push Service subscriptions image
+      - name: Build and push Service subscriptions image
         run: |
           docker build -t $ecr_registry_url:pages -f ./docker/micro/subscriptions/Dockerfile .
           docker push $ecr_registry_url:subscriptions  
 
-       - name: Build and push Service traefik image
+      - name: Build and push Service traefik image
         run: |
           docker build -t $ecr_registry_url:traefik -f ./docker/micro/traefik/Dockerfile .
           docker push $ecr_registry_url:traefik  
 
-       - name: Build and push Service users image
+      - name: Build and push Service users image
         run: |
           docker build -t $ecr_registry_url:users -f ./docker/micro/users/Dockerfile .
           docker push $ecr_registry_url:users
