@@ -26,10 +26,10 @@ jobs:
         uses: aws-actions/amazon-ecr-login@v1
 
 
-      - name: Pull and push images to Amazon ECR
-        run: |
-           docker-compose --file docker/micro/docker-compose.yml build
-           docker images
+#      - name: Pull and push images to Amazon ECR
+#        run: |
+#           docker-compose --file docker/micro/docker-compose.yml build
+#           docker images
           # docker-compose --file docker/micro/docker-compose.yml config --services | while read -r service; do
           #   docker tag $service 885801475464.dkr.ecr.eu-west-3.amazonaws.com/ecr_dev:$service-latest
           #   docker push 885801475464.dkr.ecr.eu-west-3.amazonaws.com/ecr_dev:$service-latest
@@ -53,3 +53,26 @@ jobs:
           # done
 
 ## test
+
+      - name: Build and Tag Images
+        run: |
+          docker-compose -f docker/micro/docker-compose.yml build
+          ecr_registry_url="885801475464.dkr.ecr.eu-west-3.amazonaws.com"
+
+          services=$(docker-compose -f docker/micro/docker-compose.yml config --services)
+
+          for service in $services; do
+            image_name="$ecr_registry_url/ecr_dev:$service:latest"
+            docker tag $service $image_name
+          done
+
+
+      - name: Push Images to ECR
+        run: |
+          ecr_registry_url="885801475464.dkr.ecr.eu-west-3.amazonaws.com"
+          services=$(docker-compose -f docker/micro/docker-compose.yml config --services)
+
+          for service in $services; do
+            image_name="$ecr_registry_url/ecr_dev$service:latest"
+            docker push $image_name
+          done
