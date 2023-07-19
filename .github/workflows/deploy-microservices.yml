@@ -96,8 +96,8 @@ jobs:
         run: |
           ecr_registry_url="885801475464.dkr.ecr.eu-west-3.amazonaws.com/ecr_dev"
 
-          docker build -t api:latest -f ./docker/micro/api/Dockerfile .
-          docker tag api:latest $ecr_registry_url/api:latest
+          docker build -t $ecr_registry_url/api:latest -f /docker/micro/api/Dockerfile .
+          #docker tag api:latest $ecr_registry_url/api:latest
           #docker login -u your-dockerhub-username -p your-dockerhub-password
           docker push $ecr_registry_url/api:latest
 
