@@ -33,8 +33,8 @@ jobs:
         run: |
           ecr_registry_url="885801475464.dkr.ecr.eu-west-3.amazonaws.com/ecr_dev"
 
-          docker build -t $ecr_registry_url/api:latest -f ./docker/micro/api/Dockerfile .
-          docker push $ecr_registry_url/api:latest
+          docker build -t $ecr_registry_url:api -f ./docker/micro/api/Dockerfile .
+          docker push $ecr_registry_url:api
 
 
       # - name: Build and push Service 2 image
