@@ -56,7 +56,7 @@ jobs:
 
       - name: Build and Tag Images
         run: |
-          docker-compose -f docker/micro/docker-compose.yml build
+          docker-compose -f docker/micro/docker-compose.yml pull
           ecr_registry_url="885801475464.dkr.ecr.eu-west-3.amazonaws.com"
 
           services=$(docker-compose -f docker/micro/docker-compose.yml config --services)
