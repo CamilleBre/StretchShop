@@ -62,7 +62,7 @@ jobs:
           services=$(docker-compose -f docker/micro/docker-compose.yml config --services)
 
           for service in $services; do
-            image_name="$ecr_registry_url/ecr_dev:$service:latest"
+            image_name="$ecr_registry_url/ecr_dev_$service:latest"
             docker tag $service $image_name
           done
 
@@ -73,6 +73,6 @@ jobs:
           services=$(docker-compose -f docker/micro/docker-compose.yml config --services)
 
           for service in $services; do
-            image_name="$ecr_registry_url/ecr_dev$service:latest"
+            image_name="$ecr_registry_url/ecr_dev_$service:latest"
             docker push $image_name
           done
