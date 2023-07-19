@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: users-deployment
+  labels:
+    app: users
+spec:
+  replicas: 2  # Vous pouvez ajuster le nombre de réplicas selon vos besoins
+  selector:
+    matchLabels:
+      app: users
+  template:
+    metadata:
+      labels:
+        app: users
+    spec:
+      containers:
+        - name: users
+          image: wradgio/stretchshop:latest  # Remplacez par l'image correcte de votre service "cart"
+          ports:
+            - containerPort: 3000  # Assurez-vous que le port exposé correspond au port utilisé par votre service "cart"
+          env:
+            - name: SERVICES
+              value: users
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: users-service
+spec:
+  selector:
+    app: users
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 3000  # Assurez-vous que le port cible correspond au port exposé dans le déploiement
+  type: ClusterIP  # Vous pouvez utiliser un autre type de service selon vos besoins

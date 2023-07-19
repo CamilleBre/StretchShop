@@ -110,5 +110,5 @@ jobs:
 
       - name: Deploy to EKS
         run: |
-          kubectl apply -f ./eks/api-deployment.yaml
-          kubectl apply -f ./eks/api-service.yaml
+          kubectl apply -f ./kubernetes/api-deployment.yaml
+          kubectl apply -f ./kubernetes/api-service.yaml
