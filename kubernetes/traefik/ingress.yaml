@@ -4,13 +4,13 @@ metadata:
   name: api-ingress
 spec:
   rules:
-    - host: example.com
-      http:
-        paths:
-          - path: /api
-            pathType: Prefix
-            backend:
-              service:
-                name: api
-                port:
-                  number: 80
+    #- host: example.com
+    http:
+      paths:
+        - path: /api
+          pathType: Prefix
+          backend:
+            service:
+              name: api
+              port:
+                number: 80
