@@ -66,6 +66,7 @@ jobs:
             docker tag $service $image_name
           done
 
+          docker images
 
       - name: Push Images to ECR
         run: |
