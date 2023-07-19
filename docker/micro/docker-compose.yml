@@ -6,6 +6,7 @@ services:
     build:
       context: ../..
     image: wradgio/stretchshop:latest
+    container_name: api
     env_file: docker-compose.env
     environment:
       SERVICES: api
@@ -27,8 +28,9 @@ services:
 
   users:
     build:
-      context: .
+      context: ../..
     image: wradgio/stretchshop:latest
+    container_name: users
     env_file: docker-compose.env
     environment:
       SERVICES: users
@@ -43,8 +45,9 @@ services:
 
   products:
     build:
-      context: .
+      context: ../..
     image: wradgio/stretchshop:latest
+    container_name: products
     env_file: docker-compose.env
     environment:
       SERVICES: products
@@ -59,8 +62,9 @@ services:
 
   categories:
     build:
-      context: .
+      context: ../..
     image: wradgio/stretchshop:latest
+    container_name: categories
     env_file: docker-compose.env
     environment:
       SERVICES: categories
@@ -75,8 +79,9 @@ services:
 
   cart:
     build:
-      context: .
+      context: ../..
     image: wradgio/stretchshop:latest
+    container_name: cart
     env_file: docker-compose.env
     environment:
       SERVICES: cart
@@ -91,8 +96,9 @@ services:
 
   orders:
     build:
-      context: .
+      context: ../..
     image: wradgio/stretchshop:latest
+    container_name: orders
     env_file: docker-compose.env
     environment:
       SERVICES: orders
@@ -107,8 +113,9 @@ services:
 
   subscriptions:
     build:
-      context: .
+      context: ../..
     image: wradgio/stretchshop:latest
+    container_name: subscriptions
     env_file: docker-compose.env
     environment:
       SERVICES: subscriptions
@@ -126,8 +133,9 @@ services:
 
   pages:
     build:
-      context: .
+      context: ../..
     image: wradgio/stretchshop:latest
+    container_name: pages
     env_file: docker-compose.env
     environment:
       SERVICES: pages
