@@ -149,15 +149,15 @@ services:
     # image: bitnami/mongodb
     restart: on-failure
     environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: rootpassword
+      #MONGO_INITDB_ROOT_USERNAME: root
+      #MONGO_INITDB_ROOT_PASSWORD: rootpassword
     volumes:
       - ./db:/data/db
       # - ./dbentry:/docker-entrypoint-initdb.d
       - ./dbconf:/etc/mongo
     ports:
       - "27017:27017"
-    command: mongod --auth
+    #command: mongod --auth
 
   nats-server:
     image: nats
