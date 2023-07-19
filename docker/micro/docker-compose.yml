@@ -148,9 +148,9 @@ services:
     # image: mvertes/alpine-mongo
     # image: bitnami/mongodb
     restart: on-failure
-    environment:
-      #MONGO_INITDB_ROOT_USERNAME: root
-      #MONGO_INITDB_ROOT_PASSWORD: rootpassword
+    #environment:
+    #MONGO_INITDB_ROOT_USERNAME: root
+    #MONGO_INITDB_ROOT_PASSWORD: rootpassword
     volumes:
       - ./db:/data/db
       # - ./dbentry:/docker-entrypoint-initdb.d
