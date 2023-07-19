@@ -25,80 +25,11 @@ jobs:
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v1
 
-
-#      - name: Pull and push images to Amazon ECR
-#        run: |
-#           docker-compose --file docker/micro/docker-compose.yml build
-#           docker images
-          # docker-compose --file docker/micro/docker-compose.yml config --services | while read -r service; do
-          #   docker tag $service 885801475464.dkr.ecr.eu-west-3.amazonaws.com/ecr_dev:$service-latest
-          #   docker push 885801475464.dkr.ecr.eu-west-3.amazonaws.com/ecr_dev:$service-latest
-          # done
-          
-          # services=$(awk '/^[ ]+image:/ {print $2}' docker/micro/docker-compose.yml)
-          # for service in $services; do
-          #   image_name=885801475464.dkr.ecr.eu-west-3.amazonaws.com$service:latest
-          #   docker pull $service
-          #   docker tag $service $image_name
-          #   docker push $image_name
-          # done
-
-          
-
-          # for service in "${services[@]}"; do
-          #   image_name=885801475464.dkr.ecr.eu-west-3.amazonaws.com/ecr_dev:$service:latest
-          #   docker-compose --file docker/micro/docker-compose.yml pull services=$service
-          #   docker tag wradgio/stretchshop:latest $image_name
-          #   docker push $image_name
-          # done
-
-## test
-
-      # - name: Build and Tag Images
-      #   run: |
-      #     docker-compose -f docker/micro/docker-compose.yml build
-      #     docker images
-      #     ecr_registry_url="885801475464.dkr.ecr.eu-west-3.amazonaws.com"
-
-      #     #services=$(docker-compose -f docker/micro/docker-compose.yml config --services)
-
-      #     services=( "mongo" "nats" "traefik")
-
-      #     for service in $services; do
-      #       echo $service 
-      #       image_name="$ecr_registry_url/ecr_dev:$service"
-      #       echo $image_name 
-      #       docker tag $service $image_name
-      #     done
-
-      #     docker tag wradgio/stretchshop "$ecr_registry_url/ecr_dev:stretchshop"
-
-      #     docker images
-
-#      - name: Push Images to ECR
-#        run: |
-#          ecr_registry_url="885801475464.dkr.ecr.eu-west-3.amazonaws.com"
-#          services=$(docker-compose -f docker/micro/docker-compose.yml config --services)
-
-#          for service in $services; do
-#            image_name="$ecr_registry_url/ecr_dev:$service"
-#            docker push $image_name
-#         done
-
-      #- name: Build and Tag Api image
-      #  run: |
-      #  ecr_registry_url="885801475464.dkr.ecr.eu-west-3.amazonaws.com/ecr_dev"
-
-
-
-
       - name: Build and push Service 1 image
         run: |
           ecr_registry_url="885801475464.dkr.ecr.eu-west-3.amazonaws.com/ecr_dev"
 
           docker build -t $ecr_registry_url/api:latest -f ./docker/micro/api/Dockerfile .
-      #docker tag api:latest $ecr_registry_url/api:latest
-      #docker login -u your-dockerhub-username -p your-dockerhub-password
           docker push $ecr_registry_url/api:latest
 
 
