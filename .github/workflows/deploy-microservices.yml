@@ -103,3 +103,11 @@ jobs:
 
           docker build -t $ecr_registry_url:users -f ./docker/micro/users/Dockerfile .
           docker push $ecr_registry_url:users
+
+      - name: Update kube config
+        run: aws eks update-kubeconfig --name eks-stretchshop
+
+      - name: Deploy to EKS
+        run: |
+          kubectl apply -f ./eks/api-deployment.yaml
+          kubectl apply -f ./eks/api-service.yaml
