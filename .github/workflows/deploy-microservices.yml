@@ -22,24 +22,66 @@ jobs:
           aws-region: eu-west-3
 
       - name: Login to AWS ECR
-        uses: aws-actions/amazon-ecr-login@v1
+        uses: aws-actions/amazon-ecr-login@v2
         with:
           registry: 885801475464.dkr.ecr.eu-west-3.amazonaws.com/ecr_dev
           #region: eu-west-3
           #aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           #aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
-      - name: Build and push Service 1 image
+      - name: Build and push Service api image
         run: |
           ecr_registry_url="885801475464.dkr.ecr.eu-west-3.amazonaws.com/ecr_dev"
 
           docker build -t $ecr_registry_url:api -f ./docker/micro/api/Dockerfile .
           docker push $ecr_registry_url:api
 
+      - name: Build and push Service cart image
+        run: |
+          docker build -t $ecr_registry_url:cart -f ./docker/micro/cart/Dockerfile .
+          docker push $ecr_registry_url:cart
 
-      # - name: Build and push Service 2 image
-      #   run: |
-      #     docker build -t service2:latest -f path/to/Dockerfile-service2 .
-      #     docker tag service2:latest your-dockerhub-username/service2:latest
-      #     docker login -u your-dockerhub-username -p your-dockerhub-password
-      #     docker push your-dockerhub-username/service2:latest
+      - name: Build and push Service categories image
+        run: |
+          docker build -t $ecr_registry_url:categories -f ./docker/micro/api/Dockerfile .
+          docker push $ecr_registry_url:categories
+
+      - name: Build and push Service mongo image
+        run: |
+          docker build -t $ecr_registry_url:categories -f ./docker/micro/mongo/Dockerfile .
+          docker push $ecr_registry_url:mongo
+
+      - name: Build and push Service nats-server image
+        run: |
+          docker build -t $ecr_registry_url:nats-server -f ./docker/micro/nats-server/Dockerfile .
+          docker push $ecr_registry_url:nats-server
+
+       - name: Build and push Service orders image
+        run: |
+          docker build -t $ecr_registry_url:orders -f ./docker/micro/orders/Dockerfile .
+          docker push $ecr_registry_url:orders        
+
+       - name: Build and push Service pages image
+        run: |
+          docker build -t $ecr_registry_url:pages -f ./docker/micro/pages/Dockerfile .
+          docker push $ecr_registry_url:pages        
+
+       - name: Build and push Service products image
+        run: |
+          docker build -t $ecr_registry_url:products -f ./docker/micro/products/Dockerfile .
+          docker push $ecr_registry_url:products  
+
+       - name: Build and push Service subscriptions image
+        run: |
+          docker build -t $ecr_registry_url:pages -f ./docker/micro/subscriptions/Dockerfile .
+          docker push $ecr_registry_url:subscriptions  
+
+       - name: Build and push Service traefik image
+        run: |
+          docker build -t $ecr_registry_url:traefik -f ./docker/micro/traefik/Dockerfile .
+          docker push $ecr_registry_url:traefik  
+
+       - name: Build and push Service users image
+        run: |
+          docker build -t $ecr_registry_url:users -f ./docker/micro/users/Dockerfile .
+          docker push $ecr_registry_url:users
