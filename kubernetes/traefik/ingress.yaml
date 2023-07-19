@@ -1,16 +1,35 @@
+# apiVersion: networking.k8s.io/v1
+# kind: Ingress
+# metadata:
+#   name: api-ingress
+# spec:
+#   rules:
+#     #- host: example.com
+#     http:
+#       paths:
+#         - path: /api
+#           pathType: Prefix
+#           backend:
+#             service:
+#               name: api
+#               port:
+#                 number: 80
+
+
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: api-ingress
+  name: ing-traefik
+  annotations:
+    kubernetes.io/ingress.class: traefik
 spec:
   rules:
-    #- host: example.com
-    http:
+  - http:
       paths:
-        - path: /api
-          pathType: Prefix
-          backend:
-            service:
-              name: api
-              port:
-                number: 80
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: api
+            port:
+              number: 80
