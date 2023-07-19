@@ -24,8 +24,8 @@ jobs:
 
       - name: Login to AWS ECR
         uses: aws-actions/amazon-ecr-login@v1
-        with:
-          registry: 885801475464.dkr.ecr.eu-west-3.amazonaws.com/ecr_dev
+        #with:
+        #  registry: 885801475464.dkr.ecr.eu-west-3.amazonaws.com/ecr_dev
 
       - name: Build and push Service api image
         run: |
@@ -36,50 +36,70 @@ jobs:
 
       - name: Build and push Service cart image
         run: |
+          ecr_registry_url="885801475464.dkr.ecr.eu-west-3.amazonaws.com/ecr_dev"
+
           docker build -t $ecr_registry_url:cart -f ./docker/micro/cart/Dockerfile .
           docker push $ecr_registry_url:cart
 
       - name: Build and push Service categories image
         run: |
+          ecr_registry_url="885801475464.dkr.ecr.eu-west-3.amazonaws.com/ecr_dev"
+
           docker build -t $ecr_registry_url:categories -f ./docker/micro/api/Dockerfile .
           docker push $ecr_registry_url:categories
 
       - name: Build and push Service mongo image
         run: |
+          ecr_registry_url="885801475464.dkr.ecr.eu-west-3.amazonaws.com/ecr_dev"
+
           docker build -t $ecr_registry_url:categories -f ./docker/micro/mongo/Dockerfile .
           docker push $ecr_registry_url:mongo
 
       - name: Build and push Service nats-server image
         run: |
+          ecr_registry_url="885801475464.dkr.ecr.eu-west-3.amazonaws.com/ecr_dev"
+
           docker build -t $ecr_registry_url:nats-server -f ./docker/micro/nats-server/Dockerfile .
           docker push $ecr_registry_url:nats-server
 
       - name: Build and push Service orders image
         run: |
+          ecr_registry_url="885801475464.dkr.ecr.eu-west-3.amazonaws.com/ecr_dev"
+
           docker build -t $ecr_registry_url:orders -f ./docker/micro/orders/Dockerfile .
           docker push $ecr_registry_url:orders        
 
       - name: Build and push Service pages image
         run: |
+          ecr_registry_url="885801475464.dkr.ecr.eu-west-3.amazonaws.com/ecr_dev"
+
           docker build -t $ecr_registry_url:pages -f ./docker/micro/pages/Dockerfile .
           docker push $ecr_registry_url:pages        
 
       - name: Build and push Service products image
         run: |
+          ecr_registry_url="885801475464.dkr.ecr.eu-west-3.amazonaws.com/ecr_dev"
+
           docker build -t $ecr_registry_url:products -f ./docker/micro/products/Dockerfile .
           docker push $ecr_registry_url:products  
 
       - name: Build and push Service subscriptions image
         run: |
+          ecr_registry_url="885801475464.dkr.ecr.eu-west-3.amazonaws.com/ecr_dev"
+
           docker build -t $ecr_registry_url:pages -f ./docker/micro/subscriptions/Dockerfile .
           docker push $ecr_registry_url:subscriptions  
 
       - name: Build and push Service traefik image
         run: |
+          ecr_registry_url="885801475464.dkr.ecr.eu-west-3.amazonaws.com/ecr_dev"
+
           docker build -t $ecr_registry_url:traefik -f ./docker/micro/traefik/Dockerfile .
           docker push $ecr_registry_url:traefik  
 
       - name: Build and push Service users image
         run: |
+          ecr_registry_url="885801475464.dkr.ecr.eu-west-3.amazonaws.com/ecr_dev"
+
           docker build -t $ecr_registry_url:users -f ./docker/micro/users/Dockerfile .
           docker push $ecr_registry_url:users
