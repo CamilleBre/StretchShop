@@ -2,7 +2,7 @@
 FROM traefik:1.7
 
 # Copier le fichier de configuration Traefik personnalisé
-COPY ./traefik.toml /traefik.toml
+#COPY ./traefik.toml /traefik.toml
 
 # Définir les commandes par défaut pour le service Traefik
 CMD ["--api", "--docker", "--docker.watch"]
