@@ -3,9 +3,8 @@ on:
   push:
     branches:
       - master
-
 jobs:
-  deploy:
+  BuildAndPushImageToEKS:
     name: Deploy to EKS
     runs-on: ubuntu-latest
 
@@ -25,7 +24,7 @@ jobs:
       - name: Update kube config
         run: |
           aws eks update-kubeconfig --name eks_dev
-          
+
       # Deploy the YAML files from the kubernetes folder
       - name: Deploy Kubernetes resources
         run: kubectl apply --recursive -f kubernetes
